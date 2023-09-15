@@ -2,6 +2,7 @@ package com.example.contentcalendar.controller;
 
 import com.example.contentcalendar.model.Content;
 import com.example.contentcalendar.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("/api/content")
 public class ContentController {
     private final ContentCollectionRepository repository;
@@ -32,7 +34,7 @@ public class ContentController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Content create(@RequestBody Content content) {
+    public Content create(@Valid @RequestBody Content content) {
         return repository.save(content);
     }
 
